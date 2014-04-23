@@ -28,8 +28,14 @@ function underlineAccessKeys() {
     var inputs = document.getElementsByTagName('input');
     for (var i = 0; i < inputs.length; i++)
         if (inputs[i].accessKey)
-            if (inputs[i].type == 'submit' || inputs[i].type == 'button')
-                inputs[i].value = underlineCharacter(inputs[i].value, inputs[i].accessKey);
+            if (inputs[i].type == 'submit' || inputs[i].type == 'button' || inputs[i].type == 'text') {
+                var newStr = underlineCharacter(inputs[i].value, inputs[i].accessKey);
+                if (newStr != inputs[i].value)
+                    inputs[i].value = newStr
+                else
+                    inputs[i].setAttribute('placeholder', underlineCharacter(inputs[i].getAttribute('placeholder'),
+                                                                             inputs[i].accessKey)); // XXX
+            }
 
     var tagNames = new Array('a', 'button', 'legend');
     for (var j = 0; j < tagNames.length; j++) {
