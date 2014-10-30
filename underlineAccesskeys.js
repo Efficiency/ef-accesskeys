@@ -31,8 +31,8 @@ function underlineAccessKeys() {
             if (inputs[i].type == 'submit' || inputs[i].type == 'button' || inputs[i].type == 'text') {
                 var newStr = underlineCharacter(inputs[i].value, inputs[i].accessKey);
                 if (newStr != inputs[i].value)
-                    inputs[i].value = newStr
-                else
+                    inputs[i].value = newStr;
+                else if (inputs[i].getAttribute('placeholder') != null)
                     inputs[i].setAttribute('placeholder', underlineCharacter(inputs[i].getAttribute('placeholder'),
                                                                              inputs[i].accessKey)); // XXX
             }
